@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHECKOUT</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Imperial+Script&family=Sofia&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Imperial+Script&family=Iosevka+Charon+Mono:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Sofia&display=swap" rel="stylesheet">
+    <style>
+    :root {
+        /* Colors */
+        --primary-color: #7b80a8;
+        --secondary-color: #f3961c;
+        --dark-color: #252525;
+        --white-color: #fff;
+        --light-gray-color: #f2f2f2;
+        --labor-services-color: #273071;
+        --background-image: url("Header_photo.webp");
+        --black-color: #050505;
+        --header-color: #878a81;
+        --secondary-background: #9c9f96;
+        --margin-bottom: 16px;
+        --site-max-width: 100%;
+        --spacing:4px;
+        }
+    * {
+            box-sizing: border-box;
+            /* font-family: Arial, Helvetica, sans-serif; */
+        }
+    html {
+      /* width: 100%; */
+      height: 1000px;
+      margin: 0;
+      scroll-behavior: smooth;
+        }
+    header {
+        position: absolute;
+        top: calc(var(--spacing) * 5);
+        left: calc(var(--spacing) * 12);
+        right: calc(var(--spacing) * 12);
+        height: calc(var(--spacing) * 12);
+        padding: 0px 40px;
+        background: var(--secondary-background);
+        border-radius: 10px;
+        justify-content: center;
+        display: flex;
+        align-items: center;
+       
+    }
+    
+
+    body {
+        background-color: #ece9e2;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        text-align: center;
+        margin: 0;
+        padding: 50px 20px;
+        font-family: "Iosevka Charon Mono", monospace;
+        color: #252525;
+        /* background-color: var(--white-color); */
+        }
+
+        /* .nav {
+            width: 100%;
+            max-width: 1500px;
+            margin: 50px auto;
+            color: #000;
+            height: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 40px;
+            transition: 0.2s ease;
+            } */
+
+        .project-title {
+            margin: 0;
+            font-family: "sofia", cursive;
+        }
+        .menu-box {
+            display: flex;
+            gap: 20px;
+            font-family: sans-serif;
+            font-size: large;
+
+            /* padding: 10px 15px; */
+            margin: auto;
+            align-items: center;
+           }
+        .menu-box a {
+            text-decoration: none;
+            color: #252525;
+            font-family: "Iosevka Charon Mono", monospace;
+            font-weight: 500;
+        }
+
+        .menu-box a:hover {
+            /* background-color: blue; */
+            color: white;
+        }
+
+        .checkout-container {
+            width: 90%;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        .checkout-container > h1 {
+            margin-bottom: 30px;
+            font-size: 36px;
+        }
+
+        /* MAIN CHECKOUT BOX */
+
+        .checkout-box {
+            background-color: white;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.8);
+        }
+
+        /* PRODUCT */
+        .checkout-product {
+            display: grid;
+            grid-template-columns: 180px 1fr 150px;
+            align-items: center;
+            gap: 30px;
+            padding: 25px;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        /* IMAGE */
+        .product-image {
+            width: 180px;
+            height: 180px;
+            background-color: #f5f5f5;
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 10px;
+        }
+
+        /* PRODUCT INFORMATION */
+        .product-information {
+            text-align: left;
+        }
+
+        .product-information h2 {
+            margin: 0 0 10px;
+            font-size: 22px;
+        }
+
+        /* .description {
+            margin: 0 0 15px;
+            color: #777;
+        } */
+
+        .price {
+            font-size: 18px;
+        }
+
+        .quantity {
+            color: #555;
+
+        }
+
+        /* SUBTOTAL */
+        .subtotal {
+            text-align: right;
+        }
+
+        .subtotal span {
+            display: block;
+            margin-bottom: 8px;
+            color: #777;
+        }
+
+        .subtotal strong {
+            font: 20px;
+        }
+
+        /* ORDER SUMMARY */
+        .order-summary {
+            padding: 30px;
+            background-color: #fafafa;
+        }
+
+        .order-summary h2 {
+            margin-top: 0;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+        }
+
+        .summary-row.total {
+            margin-top: 10px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        /* PLACE ORDER */
+
+        #placeOrderBtn {
+            width: 100%;
+            margin-top: 25px;
+            padding: 15px;
+            border: none;
+            border-radius: 25px;
+            background-color: #252525;
+            color: white;
+            font-size: 17px;
+            cursor: pointer;
+        }
+
+        #placeOrderBtn:hover {
+            background-color: #555;
+        }
+
+        .burger-button {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 30px;
+            cursor: pointer;
+            color: #252525;
+        }
+
+        @media (max-width: 700px) {
+
+        header {
+            position: relative;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            height: auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 0;
+         }
+
+            /* SHOW BURGER BUTTON */
+
+        .burger-button {
+            display: block;
+        }
+
+            /* HIDE MENU */
+
+        .menu-box {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background-color: #9c9f96;
+            flex-direction: column;
+            gap: 0;
+            padding: 10px 0;
+            margin: 0;
+            z-index: 1000;
+        }
+
+            /* SHOW MENU AFTER CLICK */
+        .menu-box.active {
+            display: flex;
+        }
+
+            /* MENU LINKS */
+
+        .menu-box a {
+            width: 100%;
+            padding: 15px 20px;
+            text-align: center;
+            font-size: 16px;
+        }
+        .menu-box a:hover {
+            background-color: #7b80a8;
+            color: white;
+        }    
+
+        .checkout-product {
+            grid-template-columns: 100px 1fr;
+            gap: 15px;
+        }
+
+
+        .product-image {
+            width: 100px;
+            height: 100px;
+        }
+
+
+        .subtotal {
+            grid-column: 1 / -1;
+            text-align: right;
+        }
+
+}
+
+    </style>
+</head>
+<body>
+     <header>
+    <div>
+         <h2 class="project-title">Ian's Shop</h2>
+    </div>
+
+    <!-- BURGER BUTTON -->
+    <button class="burger-button" id="burgerBtn">☰</button>
+
+    <nav class="menu-box" id="menuBox">
+        <a href="index.html">HOME</a>
+        <a href="shopall.html">ALL SHOES</a>
+        <a href="for_men.html">FOR MEN</a>
+        <a href="#">FOR WOMEN</a>
+    </nav>
+    </header>
+
+    <main class="checkout-container">
+
+        <h1>Checkout</h1>
+
+        <!-- CHECKOUT BOX -->
+
+        <section class="checkout-box">
+            <!-- PRODUCT LIST -->
+            <div id="checkoutItems">
+
+                <!-- 
+                Products will automatically
+                 qppear here using Javascript 
+                 -->
+
+            </div>
+
+                <!-- ORDER SUMMARY -->
+                 <div class="order-summary">
+                    <h2>Order Summary</h2>
+
+                    <div class="summary-row">
+
+                        <span>
+                            Total Items
+                        </span>
+
+                        <span id="totalQuantity">0</span>
+                    
+                    </div>
+
+                    <div class="summary-row total">
+                        <span>Total</span>
+                        <span>$<span id="totalPrice"></span>
+                    </div>
+
+                    <button id="placeOrderBtn">Place Order</button>
+
+                 </div>
+        </section>
+    </main>
+
+    <script>
+        //GET CART FROM LOCAL STORAGE
+
+        const cart = JSON.parse(localStorage.getItem("shoppingCart")) || [];
+
+        //GET HTML ELEMENTS
+
+        const checkoutItems = document.getElementById("checkoutItems");
+        const totalQuantityDisplay = document.getElementById("totalQuantity");
+        const totalPriceDisplay = document.getElementById("totalPrice");
+        const placeOrderBtn = document.getElementById("placeOrderBtn");
+        
+
+
+        //TOTAL VARIABLES
+
+        let totalQuantity = 0;
+        let totalPrice = 0;
+
+        //CHECK IF CART IS EMPTY
+
+        if (cart.length === 0) {
+            checkoutItems.innerHTML = "<p>Your cart is empty.</p>";
+        }
+
+        //DISPLAY PRODUCTS
+
+        cart.forEach(function(item) {
+            const subtotal = item.price * item.quantity;
+
+            totalQuantity += item.quantity;
+
+            totalPrice += subtotal;
+
+            //CREATE PRODUCT CONTAINER
+
+            const product = document.createElement("div");
+            product.classList.add("checkout-product");
+
+            product.innerHTML = `<div class="product-image">
+                <img src="${item.image}"
+                alt="${item.name}">
+                </div>
+
+                <div class="product-information">
+
+                    <h2>
+                        ${item.name}
+                    </h2>
+
+                    <p class="price">
+                        $${item.price.toFixed(2)}
+                    </p>
+
+                    <p class="quantity">
+                        Quantity:
+                        ${item.quantity}
+                    </p>
+                </div>
+
+                <div class="subtotal">
+                    <span>Subtotal</span>
+
+                    <strong>
+                        $${subtotal.toFixed(2)}
+                    </strong>
+                </div>
+                `;
+
+                checkoutItems.appendChild(product);
+        });
+
+        //DISPLAY TOTALS
+
+        totalQuantityDisplay.textContent = totalQuantity;
+        totalPriceDisplay.textContent = totalPrice.toFixed(2);
+
+        placeOrderBtn.addEventListener('click', function() {
+            alert("Your order has been placed. Thank you for shopping with us")
+            window.location.href = 'index.html';
+        
+        
+
+    });
+
+        const burgerBtn = document.getElementById('burgerBtn');
+        const menuBox = document.getElementById('menuBox');
+
+            burgerBtn.addEventListener("click", function() {
+            menuBox.classList.toggle("active");
+
+            const menuIsOpen = menuBox.classList.contains("active");
+            burgerBtn.setAttribute("aria-expanded");
+            menuIsOpen
+        });
+
+    </script>
+</body>
+</html>

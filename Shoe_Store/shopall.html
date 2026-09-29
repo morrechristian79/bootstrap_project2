@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Imperial+Script&family=Sofia&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Imperial+Script&family=Iosevka+Charon+Mono:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Sofia&display=swap" rel="stylesheet">
+    <title>SHOP ALL</title>
+    <style>
+    :root {
+        /* Colors */
+        --primary-color: #7b80a8;
+        --secondary-color: #f3961c;
+        --dark-color: #252525;
+        --white-color: #fff;
+        --light-gray-color: #f2f2f2;
+        --labor-services-color: #273071;
+        --background-image: url("Header_photo.webp");
+        --black-color: #050505;
+        --header-color: #878a81;
+        --secondary-background: #9c9f96;
+        --margin-bottom: 16px;
+        --site-max-width: 100%;
+        --spacing:4px;
+        }
+    * {
+            box-sizing: border-box;
+            /* font-family: Arial, Helvetica, sans-serif; */
+        }
+    html, body {
+      /* width: 100%; */
+      height: 1000px;
+      margin: 0;
+      scroll-behavior: smooth;
+        }
+    header {
+        position: absolute;
+        top: calc(var(--spacing) * 5);
+        left: calc(var(--spacing) * 12);
+        right: calc(var(--spacing) * 12);
+        height: calc(var(--spacing) * 12);
+        padding: 0px 40px;
+        background: var(--secondary-background);
+        border-radius: 10px;
+        justify-content: center;
+        display: flex;
+        align-items: center;
+       
+    }
+    
+
+    body {
+        background-color: #ece9e2;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        text-align: center;
+        /* background-color: var(--white-color); */
+        }
+
+        /* .nav {
+            width: 100%;
+            max-width: 1500px;
+            margin: 50px auto;
+            color: #000;
+            height: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 40px;
+            transition: 0.2s ease;
+            } */
+
+        .project-title {
+            margin: 0;
+            font-family: "sofia", cursive;
+        }
+        .menu-box {
+            display: flex;
+            gap: 20px;
+            font-family: sans-serif;
+            font-size: large;
+
+            /* padding: 10px 15px; */
+            margin: auto;
+            align-items: center;
+           }
+        .menu-box a {
+            text-decoration: none;
+            color: #252525;
+            font-family: "Iosevka Charon Mono", monospace;
+            font-weight: 500;
+        }
+
+        .menu-box a:hover {
+            /* background-color: blue; */
+            color: white;
+        }
+
+        .gallery {
+            width: 100%;
+            max-width: 1400px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            row-gap: 20px;
+            column-gap: 10px;
+            margin: 0 auto;
+            padding: 20px;
+            cursor: pointer;
+
+            /* background-color: white;
+            border-radius: 10%; */
+        }
+
+        .gallery img:hover {
+            transform: scale(1.5);
+        }
+
+        .hero_container {
+            padding: 120px 40px 60px;
+            min-height: 100vh;
+        }
+
+        .shoe_box {
+            width: 300px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 30px;
+            align-items: flex-start;
+            text-align: left;
+            transition: transform 0.3s ease,
+                        box-shadow 0.3s ease;
+            font-family: "Iosevka Charon Mono", monospace;
+        }
+
+        .shoe_box:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .shoe_box img {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .popup img {
+            width: 80%;
+            max-width: 600px;
+            border-radius: 10px;
+        }
+        .caption {
+            color: white;
+            margin-top: 10px;
+            font-size: 18px;
+            /* background: rgba(238, 235, 235, 0.5); */
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-family: "Iosevka Charon Mono", monospace;
+            white-space: pre-line;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 290px;
+            right: 530px;
+            font-size: 30px;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* Quantity Controls */
+        .controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .controls button {
+            width: 35px;
+            height: 35px;
+            border: none;
+            border-radius: 50%;
+            background-color: #6e6d6d;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .quantity {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        /* Add to cart */
+
+        .addToCartBtn {
+            width: 100%;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 20px;
+            background-color: #6e6d6d;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .addToCartBtn:hover {
+            background-color: #4c5a7c;
+            color: #050505;
+        }
+
+        /* Shopping Cart */
+
+        .cart {
+            width: 90%;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: white;
+            border-radius: 25px;
+            text-align: left;
+        }
+
+        .cart h2 {
+            text-align: center;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .cart-summary {
+            margin-top: 25px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        #checkoutBtn {
+            width: 100%;
+            padding: 15px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 20px;
+            background-color: #252525;
+            color: white;
+            font-size: 17px;
+            cursor: pointer;
+        }
+
+        /* TOAST MESSAGE */
+        #toast {
+            visibility: hidden;
+            min-width: 250px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 8px;
+            padding: 16px;
+            position: fixed;
+            z-index: 9999;
+            bottom: 30px;
+            right: 30px;
+            font-size: 14px;
+            transition: opacity 0.5s ease, visbility 0.5s;
+        }
+        #toast.show {
+            visibility: visible;
+            opacity: 1;
+        }
+        .burger-button {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 30px;
+            cursor: pointer;
+            color: #252525;
+        }
+
+
+        @media screen and (max-width: 900px) {
+
+        .cart {
+            width: 92%;
+            max-width: 700px;
+            padding: 25px;
+            margin: 30px auto;
+        }
+
+}
+
+        @media screen and (max-width: 600px) {
+            header {
+                position: relative;
+                top: 0;
+                left: 0;
+                right: 0;
+                width: 100%;
+                height: auto;
+                padding: 15px 20px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border-radius: 0;
+            }
+
+            /* SHOW BURGER BUTTON */
+
+            .burger-button {
+                display: block;
+            }
+
+            /* HIDE MENU */
+
+            .menu-box {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: #9c9f96;
+                flex-direction: column;
+                gap: 0;
+                padding: 10px 0;
+                margin: 0;
+                z-index: 1000;
+            }
+
+            /* SHOW MENU AFTER CLICK */
+            .menu-box.active {
+                display: flex;
+            }
+
+            /* MENU LINKS */
+
+            .menu-box a {
+                width: 100%;
+                padding: 15px 20px;
+                text-align: center;
+                font-size: 16px;
+            }
+            .menu-box a:hover {
+                background-color: #7b80a8;
+                color: white;
+            }
+             .cart {
+                width: calc(100% - 30px);
+                margin: 25px auto;
+                padding: 20px 15px;
+                border-radius: 18px;
+            }
+
+            .cart h2 {
+                font-size: 22px;
+                margin-top: 0;
+            }
+
+
+            .cart-item {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                flex-wrap: wrap;
+                gap: 8px;
+                padding: 15px 0;
+                font-size: 14px;
+            }
+
+            .cart-summary {
+                margin-top: 20px;
+                font-size: 16px;
+            }
+
+            #checkoutBtn {
+                width: 100%;
+                padding: 14px;
+                font-size: 16px;
+            }
+            
+            /* PRODUCT AREA */
+            .hero_container {
+                padding: 30px 15px;
+            }
+
+            .gallery {
+                width: 100%;
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 10px;
+            }
+
+            .shoe_box {
+                width: 100%;
+                max-width: 350px;
+                margin: 0 auto;
+            }
+
+            .shoe_box img {
+                width: 100%;
+                height: 220px;
+                object-fit: contain;
+            }
+
+            .cart {
+                width: 95%;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+    <div>
+         <h2 class="project-title">Ian's Shop</h2>
+    </div>
+
+    <!-- BURGER BUTTON -->
+    <button class="burger-button" id="burgerBtn">☰</button>
+
+    <nav class="menu-box" id="menuBox">
+        <a href="index.html">HOME</a>
+        <a href="for_men.html">FOR MEN</a>
+        <a href="for_women.html">FOR WOMEN</a>
+    </nav>
+    </header>
+    <div class="hero_container">
+    <div class="gallery">
+        <div class="shoe_box" data-name="Tree Topper Natural Black Blizzard" data-price="150">
+            <img src="mens_dasher/A11179_24Q4_Tree-Topper-Natural-Black-Blizzard_PDP_LEFT.webp" data-caption = "Finally, a classic high top that doesn’t feel clunky. \nPerfect for warmer days, our lightweight, flexible tree fiber blend conforms to your movements for next-level comfort.&nbsp;">
+            <h3>Tree Topper</h3>
+            <p>Natural Black Blizzard</p>
+            <p>$150</p>
+
+            <div class="controls">
+                <button class="decreaseBtn">-</button>
+                <span class="quantity">1</span>
+                <button class="increaseBtn">+</button>
+            </div>
+
+            <button class="addToCartBtn">
+                Add to Cart
+            </button>
+        </div>
+        <div class="shoe_box" data-name="Strider Natural Blizzard Sole" data-price="150">
+            <img src="mens_dasher/A11746_25Q3_Strider-Natural-Black-Blizzard-Sole_PDP_LEFT__1.webp" data-caption = "Made to match the pace of life in motion, the Strider offers comfort and versatility with style to spare. \nSpringy, stretchy, and supportive, it’s your AM to PM pick for all-day, every day wearability.">
+            <h3>Strider Natural</h3>
+            <p>Blizzard Sole</p>
+            <p>$150</p>
+
+            <div class="controls">
+                <button class="decreaseBtn">-</button>
+                <span class="quantity">1</span>
+                <button class="increaseBtn">+</button>
+            </div>
+
+            <button class="addToCartBtn">
+                Add to Cart
+            </button>
+        </div>
+
+        <div class="shoe_box" data-name="Trail Runner SWT Hazy Indigo Natural Black " data-price="150">
+            <img src="mens_dasher/A10723_24Q1_Trail-Runner-SWT-True-Navy-Hazy-Indigo-Natural-Black_PDP_LEFT__1.webp" data-caption = "The Trail Runner is sustainably-engineered and intentionally designed for durability, comfort, and performance no matter where the day leads. \nA single-piece knit upper and pull tab make it easy to slip on and tackle any terrain with ease.">
+            <h3>Trail Runner SWT</h3>
+            <p> Hazy Indigo Natural Black</p>
+            <p>$150</p>
+
+            <div class="controls">
+                <button class="decreaseBtn">-</button>
+                <span class="quantity">1</span>
+                <button class="increaseBtn">+</button>
+            </div>
+
+            <button class="addToCartBtn">
+                Add to Cart
+            </button>
+        </div>
+
+        <div class="shoe_box" data-name="Wool Runner NZ Waterproof Dark Grey Sole" data-price="120">
+            <img src="mens_dasher/A12007_25Q3_Wool-Runner-NZ-Waterproof-Dark-Grey-Light-Grey-Sole_PDP_LEFT.webp" data-caption = "Boot-like protection, sneaker-like performance. \nWeather any storm with our fully waterproof Wool Runner NZ built to keep water out and warmth in. \nRainy days just got a lot brighter.">
+            <h3>Wool Runner NZ</h3>
+            <p>Waterproof Dark Grey Sole</p>
+            <p>$120</p>
+
+            <div class="controls">
+                <button class="decreaseBtn">-</button>
+                <span class="quantity">1</span>
+                <button class="increaseBtn">+</button>
+            </div>
+
+            <button class="addToCartBtn">
+                Add to Cart
+            </button>
+        </div>
+
+        <div class="shoe_box" data-name="Wool Runner NZ Mid Waterproof Natural White Sole" data-price="190">
+            <img src="mens_dasher/A12023_25Q3_Wool-Runner-NZ-Mid-Waterproof-Natural-Black-Natural-White-Sole_PDP_LEFT.webp" data-caption = "Downpours happen. Be prepared with fully waterproof kicks boasting next-level protection. \nThis stylish sneaker adds a mid-top silhouette and weather-ready features to the cozy comfort of the Wool Runner NZ.">
+            <h3>Wool Runner NZ</h3>
+            <p>Mid Waterproof Natural White Sole</p>
+            <p>$190</p>
+
+            <div class="controls">
+                <button class="decreaseBtn">-</button>
+                <span class="quantity">1</span>
+                <button class="increaseBtn">+</button>
+            </div>
+
+            <button class="addToCartBtn">
+                Add to Cart
+            </button>
+        </div>
+
+        <div class="shoe_box" data-name="Wool Runner NZ Natural Black Sole" data-price="180">
+            <img src="mens_dasher/A11475_25Q1_Tree_Glider_Blizzard_Hanami_Blue_Blizzard_PDP_LEFT-2000x2000.webp" data-caption = "Our responsibly-sourced Merino wool is lined with a breathable waterproof membrane that keeps feet warm and dry in any conditions, \nwhile a brand new dual-density insole—the Allbirds Featherbed—uses cushioned memory foam to deliver uncompromising comfort.">
+            <h3>Wool Runner NZ</h3>
+            <p>Natural Black Sole</p>
+            <p>$180</p>
+
+            <div class="controls">
+                <button class="decreaseBtn">-</button>
+                <span class="quantity">1</span>
+                <button class="increaseBtn">+</button>
+            </div>
+
+            <button class="addToCartBtn">
+                Add to Cart
+            </button>
+        </div>
+
+        <div class="shoe_box" data-name="Tree Glider Blizzard" data-price="110">
+            <img src="womens_shoes/A11072_24Q3_Tree_Glider_Blizzard_Blizzard_PDP_LEFT-1000x1000.webp" data-caption = "A sporty classic, made wildly comfortable. \nA light and stretchy one-piece upper provides a sock-like fit, while multi-directional traction allows for quick pivots and dynamic shifts. \nSlip-on friendly pull tabs make these a breeze to get on and off so you’re always ready to go with the flow.">
+            <h3>Tree Glider</h3>
+            <p>Blizzard</p>
+            <p>$110</p>
+
+            <div class="controls">
+                <button class="decreaseBtn">-</button>
+                <span class="quantity">1</span>
+                <button class="increaseBtn">+</button>
+            </div>
+
+            <button class="addToCartBtn">
+                Add to Cart
+            </button>
+        </div>
+
+        <div class="shoe_box" data-name="Tree Runner NZ Natural White Natural White Sole" data-price="175">
+            <img src="womens_shoes/A12256_26Q1_Cruiser-Terry-Ochre-Warm-White_PDP_LEFT.webp" data-caption="The latest iteration of our fan-fave Tree Runner nods to our New Zealand roots, tying ten years of innovation together in a shoe as stylish as it is comfortable. \nOffering a slightly more structured build than the original, this light, breathable, sneaker is made to move.">
+            <h3>Tree Runner NZ Natural</h3>
+            <p>White Natural White Sole</p>
+            <p>$175</p>
+
+            <div class="controls">
+                <button class="decreaseBtn">-</button>
+                <span class="quantity">1</span>
+                <button class="increaseBtn">+</button>
+            </div>
+
+            <button class="addToCartBtn">
+                Add to Cart
+            </button>
+        </div>
+        
+        <div class="shoe_box" data-name="Cruiser Canvas Warm White" data-price="100">
+            <img src="womens_shoes/A12344_26Q1_Cruiser-Canvas-Warm-White-Natural-White_PDP_LEFT.webp" data-caption = "Lightweight, bouncy, and wildly comfortable, Allbirds shoes make any outing feel effortless. \nSlip in, lace up, or slide them on and enjoy the comfy support."> 
+            <h3>Cruiser Canvas</h3>
+            <p>Warm White</p>
+            <p>$100</p>
+
+            <div class="controls">
+                <button class="decreaseBtn">-</button>
+                <span class="quantity">1</span>
+                <button class="increaseBtn">+</button>
+            </div>
+
+            <button class="addToCartBtn">
+                Add to Cart
+            </button>
+        </div>
+        
+        <div class="shoe_box" data-name="Dasher NZ Blizzard" data-price="250">
+            <img src="womens_shoes/A12447_26Q1_Dasher-NZ-Blizzard-Blizzard_PDP_LEFT_43da74dc-9258-490a-b9d8-3083bd6eb85f.webp" data-caption="A new take on our fan-favorite Dasher, made for busy days and spontaneous plans. \nLightweight, breathable comfort keeps you cool as you move, with added heel protection where it counts. \nFast when you want. Comfortable always."> 
+            <h3>Dasher NZ</h3>
+            <p>Blizzard</p>
+            <p>$250</p>
+
+            <div class="controls">
+                <button class="decreaseBtn">-</button>
+                <span class="quantity">1</span>
+                <button class="increaseBtn">+</button>
+            </div>
+
+            <button class="addToCartBtn">
+                Add to Cart
+            </button>
+        </div> 
+        
+        <div class="shoe_box" data-name="Dasher NZ Blizzard Deep Navy Blizzard" data-price="170">
+            <img src="womens_shoes/A12464_26Q1_Dasher-NZ-Blizzard-Deep-Navy-Blizzard_PDP_LEFT_e38509e9-51da-49a3-a794-53de6797a109.webp" data-caption="A new take on our fan-favorite Dasher, made for busy days and spontaneous plans. \nLightweight, breathable comfort keeps you cool as you move, with added heel protection where it counts. \nFast when you want. Comfortable always.">             
+            <h3>Dasher NZ Blizzard</h3>
+            <p>Deep Navy Blizzard</p>
+            <p>$170</p>
+
+            <div class="controls">
+                <button class="decreaseBtn">-</button>
+                <span class="quantity">1</span>
+                <button class="increaseBtn">+</button>
+            </div>
+
+            <button class="addToCartBtn">
+                Add to Cart
+            </button>
+            
+        </div>
+
+        <div class="shoe_box" data-name="Womens Varsity Airy Mid Yellow Blizzard Sole" data-price="130">
+            <img src="womens_shoes/A12574_26Q2_Womens-Varsity-Airy-Mid-Yellow-Blizzard-Sole_PDP_LEFT.webp" data-caption="Our retro-inspired Varsity gets a breath of fresh air. \nAn all-new open knit mesh helps maximize airflow and breathability, ensuring uncompromising all-day comfort and wearability. \nFresh, airy, and cool in every sense, it’s a total breeze.">             
+            <h3>Womens Varsity Airy</h3>
+            <p>Mid Yellow Blizzard Sole</p>
+            <p>$130</p>
+
+            <div class="controls">
+                <button class="decreaseBtn">-</button>
+                <span class="quantity">1</span>
+                <button class="increaseBtn">+</button>
+            </div>
+
+            <button class="addToCartBtn">
+                Add to Cart
+            </button>
+        </div>
+
+     
+        </div>
+    </div>
+
+     <section class="cart">
+        <h2>Shopping Cart</h2>
+        <div id="cartItems">
+            <p>Your cart is Emty.</p>
+        </div>
+
+        <div class="cart-summary">
+            <p>
+                Items:
+                <span id="cartQuantity">0</span>
+            </p>
+
+            <p>
+                Total:
+                $<span id="cartTotal">0.00</span>
+            </p>
+
+            <div>
+                <button id="checkoutBtn">
+                    Checkout
+                </button>
+            </div>
+        </div>
+    </section>    
+
+    <div class="popup" id="popup">
+        <span class="close-btn" id="close-btn">&times;</span>
+        <img id="popup-img">
+        <p class="caption" id="popup-caption"></p>
+        
+    </div>
+
+    <div id="toast">This is a toast message</div>
+
+    <script>
+
+            const popup = document.getElementById('popup');
+            const popupCaption = document.getElementById('popup-caption');
+            const popImg = document.getElementById('popup-img');
+            const closeBtn = document.getElementById('close-btn');
+
+            document.querySelectorAll(".gallery img").forEach(img => {
+                img.addEventListener("click", () => {
+                    popImg.src = img.src;
+                    popupCaption.textContent = img.dataset.caption.replace(/\\n/g, "\n");
+                    popup.style.display = "flex";
+                });
+
+                closeBtn.addEventListener('click', function() {
+                    popup.style.display = "none";
+                });
+            });
+
+            //SHOPPING CART
+            const cart =[];
+            const shoeBoxes = document.querySelectorAll(".shoe_box");
+            const cartItems = document.getElementById("cartItems");
+            const cartQuantity = document.getElementById("cartQuantity");
+            const cartTotal = document.getElementById("cartTotal");
+            const checkoutBtn = document.getElementById('checkoutBtn');
+            
+
+            function showToast(message) {
+                    const toast = document.getElementById('toast');
+                    toast.textContent = message;
+                    toast.classList.add("show");
+
+                    setTimeout(() => {
+                        toast.classList.remove("show");
+                    }, 3000);
+                }
+
+            //PRODUCT CARDS
+
+            shoeBoxes.forEach(function(shoeBox) {
+                const decreaseBtn = shoeBox.querySelector(".decreaseBtn");
+                const increaseBtn = shoeBox.querySelector(".increaseBtn");
+                const quantityDisplay = shoeBox.querySelector(".quantity");
+                const addToCartBtn = shoeBox.querySelector(".addToCartBtn");
+
+                let quantity = 1;
+
+                //Increase quantity
+
+                increaseBtn.addEventListener("click", function() {
+                    quantity++;
+                    quantityDisplay.textContent = quantity;
+                });
+
+                //Decrease quantity
+
+                decreaseBtn.addEventListener("click", function() {
+                    if (quantity > 1) {
+                        quantity--;
+                        quantityDisplay.textContent = quantity;
+                    }
+                });
+
+                //Add to Cart
+
+                addToCartBtn.addEventListener('click', function() {
+                    const name = shoeBox.dataset.name;
+                    const price = Number(shoeBox.dataset.price);
+                    const image = shoeBox.querySelector("img").getAttribute("src");
+                    addToCart(name, price, quantity, image);   
+                    showToast('Item added to cart!');    
+                });
+              
+        });    
+
+                
+
+                //Add to Cart Function
+
+                function addToCart(name, price, quantity, image) {
+                    const existingItem = cart.find(function(item) {
+                        return item.name === name;
+                    });
+
+                    //Product already exists
+
+                    if (existingItem) {
+                        existingItem.quantity = quantity;
+                        alert("Item already added to cart");
+                        
+                    }
+                    //new product
+                    else {
+                        const product = {
+                            name: name, 
+                            price: price, 
+                            quantity: quantity,
+                            image: image
+                        };
+                        cart.push(product);
+                    }
+                    console.log(cart);
+                    updateCart();
+                }
+
+                //UPDATE CART
+
+                function updateCart() {
+                    cartItems.innerHTML = "";
+
+                    let totalQuantity = 0;
+                    let totalPrice = 0;
+
+                    cart.forEach(function(item) {
+                        const itemTotal = item.price * item.quantity;
+                        totalQuantity += item.quantity;
+                        totalPrice += itemTotal;
+
+                        const cartItem = document.createElement("div");
+
+                        cartItem.classList.add("cart-item");
+
+                        cartItem.innerHTML = `
+                            <span>
+                                ${item.name} x ${item.quantity}
+                            </span>
+                                
+                            <span>
+                                $${itemTotal.toFixed(2)}
+                            </span> `;
+
+                        cartItems.appendChild(cartItem);
+                    });
+
+                    cartQuantity.textContent = totalQuantity;
+                    cartTotal.textContent = totalPrice.toFixed(2);
+
+                    //Show empty message
+
+                    if ( cart.length === 0) {
+                        cartItems.innerHTML = "<p>Your cart is empty.</p>";
+                    }
+                }
+                //CHECKOUT
+
+                checkoutBtn.addEventListener("click", function() {
+                    if (cart.length === 0){
+                        showToast("Your cart is empty!");
+                        return;
+                    }
+
+                    //Save all products
+                    localStorage.setItem("shoppingCart", JSON.stringify(cart));
+
+                    let totalQuantity = 0;
+                    let totalPrice = 0;
+
+                    cart.forEach(function(item) {
+                        totalQuantity += item.quantity;
+                        totalPrice += item.price * item.quantity;
+                    });
+                    // 
+                    window.location.href = "checkout2.html";
+                })
+
+                
+            const burgerBtn = document.getElementById('burgerBtn');
+            const menuBox = document.getElementById('menuBox');
+
+            burgerBtn.addEventListener('click', function() {
+                menuBox.classList.toggle('active');
+            });
+            
+    </script>
+    
+</body>
+</html>

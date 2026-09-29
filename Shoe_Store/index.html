@@ -1,0 +1,520 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Imperial+Script&family=Sofia&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Imperial+Script&family=Iosevka+Charon+Mono:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Sofia&display=swap"
+      rel="stylesheet"
+    />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" 
+    rel="stylesheet"/>
+    <title>Ian's Shop</title>
+    <style>
+      :root {
+          /* Colors */
+          --primary-color: #7b80a8;
+          --secondary-color: #f3961c;
+          --dark-color: #252525;
+          --white-color: #fff;
+          --light-gray-color: #f2f2f2;
+          --labor-services-color: #273071;
+          --background-image: url("Header_photo.webp");
+          --mobile-background: url("mobile_version_background.png");
+          --black-color: #050505;
+          --header-color: #878a81;
+          --secondary-background: #9c9f96;
+          --margin-bottom: 16px;
+          --site-max-width: 100%;
+          --spacing:4px;
+          }
+      * {
+              box-sizing: border-box;
+              font-family: Arial, Helvetica, sans-serif;
+          }
+      html, body {
+        /* width: 100%; */
+        margin: 0;
+        min-height: 100%;
+        scroll-behavior: smooth;
+          }
+      header {
+          position: absolute;
+          top: calc(var(--spacing) * 5);
+          left: calc(var(--spacing) * 12);
+          right: calc(var(--spacing) * 12);
+          height: calc(var(--spacing) * 12);
+          padding: 0px 40px;
+
+          background: var(--secondary-background);
+          border-radius: 10px;
+          justify-content: center;
+          display: flex;
+          align-items: center;
+
+      }
+
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+
+            background-image: var(--background-image);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            text-align: center;
+            /* background-color: var(--white-color); */
+            }
+
+          /* .nav {
+              width: 100%;
+              max-width: 1500px;
+              margin: 50px auto;
+              color: #000;
+              height: auto;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              padding: 0 40px;
+              transition: 0.2s ease;
+              } */
+
+          .project-title {
+              margin: 0;
+              font-family: "sofia", cursive;
+          }
+          .menu-box {
+              display: flex;
+              gap: 20px;
+              font-family: sans-serif;
+              font-size: large;
+
+              /* padding: 10px 15px; */
+              margin: auto;
+              align-items: center;
+             }
+          .menu-box a {
+              text-decoration: none;
+              color: #252525;
+              font-family: "Iosevka Charon Mono", monospace;
+              font-weight: 500;
+          }
+
+          .menu-box a:hover {
+              /* background-color: blue; */
+              color: white;
+          }
+
+          .burger-button {
+              display: none;
+              background: none;
+              border: none;
+              font-size: 30px;
+              cursor: pointer;
+              color: #252525;
+          }
+          /* Footer Section */
+        /* footer {
+            background: #273071;
+            color: var(--white-color);
+            padding: 60px 20px;
+        } */
+
+        .footer_section {
+            display: flex;
+            justify-content: space-between;
+            
+        }
+
+        .footer_section h3 {
+            font-size: 22px;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        .footer_section .footer_logo a {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            color: #050505;
+            text-decoration: none;
+        }
+
+        .footer_section .footer_logo a img {
+            max-width: 200px;
+        }
+
+        .footer_section .footer_logo a h2 {
+            font-weight: 600;
+        }
+
+        .footer_section .useful_links ul li {
+            margin: 20px 0;
+            text-align: left;
+            
+        }
+
+        .footer_section .useful_links ul li a {
+            color: var(--white-color);
+            font-size: 17px;
+            text-decoration: none;
+        }
+
+        .footer_section .useful_links ul li a:hover {
+            text-decoration: underline;
+        }
+
+        .footer_section .contact_us ul li {
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .footer_section .contact_us ul li i {
+            font-size: 25px;
+        }
+
+        .footer_section .contact_us ul li span {
+            font-size: 17px;
+        }
+
+        .footer_section .follow_us i {
+            font-size: 26px;
+            margin-right: 25px;
+            cursor: pointer;
+            color: #f6f6f7;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        .footer_title {
+            text-decoration: none;
+            font-family: 'sofia', cursive;
+        }
+
+        .footer_section .follow_us i:hover {
+            color: white;
+        }
+        .section_container {
+            margin: 0 auto;
+            max-width: var(--site-max-width);
+        }
+        .site-footer {
+            width: 100%;
+            margin-top: 60px;
+            padding: 40px 30px 20px;
+            background-color: #252525;
+            color: white;
+        }
+
+        .bxl-facebook-circle {
+            color: #1877f2;
+            font-size: 32px;
+        }
+        .main-content {
+            flex: 1;
+        }
+
+          @media screen and (max-width: 900px) {
+            
+        html,
+        body {
+            width: 100%;
+            min-height: 100%;
+            height: auto;
+            margin: 0;
+            scroll-behavior: smooth;
+        }
+
+        header {
+            top: 15px;
+            left: 20px;
+            right: 20px;
+            height: 55px;
+            padding: 0 25px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            border-radius: 10px;
+        }
+
+        body {
+            min-height: 100vh;
+            background-image: var(--mobile-background);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .project-title {
+            margin: 0;
+            font-family: "Sofia", cursive;
+            font-size: 26px;
+        }
+
+        .site-footer {
+            margin-top: 40px;
+            padding: 35px 25px 20px;
+        }
+
+        .footer_section {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 35px 50px;
+        }
+
+        .footer_section > div {
+            min-width: 0;
+            text-align: left;
+        }
+
+        .footer_section h3 {
+            margin-top: 0;
+            margin-bottom: 14px;
+            font-size: 20px;
+        }
+
+        .footer_section .footer_logo a {
+            justify-content: flex-start;
+        }
+
+        .footer_section .footer_logo a img {
+            width: 100%;
+            max-width: 160px;
+            height: auto;
+        }
+
+        .footer_section .useful_links ul,
+        .footer_section .contact_us ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .footer_section .useful_links ul li {
+            margin: 12px 0;
+            text-align: left;
+        }
+
+        .footer_section .useful_links ul li a {
+            font-size: 15px;
+        }
+
+        .footer_section .contact_us ul li {
+            margin: 12px 0;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        .footer_section .contact_us ul li i {
+            flex-shrink: 0;
+            font-size: 22px;
+        }
+
+        .footer_section .contact_us ul li span {
+            font-size: 15px;
+            line-height: 1.5;
+            overflow-wrap: anywhere;
+        }
+
+        .footer_section .follow_us i {
+            margin-right: 15px;
+            font-size: 30px;
+        }
+        }
+       
+    
+
+    @media screen and (max-width: 600px) {
+
+        html, body {
+            width: 100%;
+            min-height: 100vh;
+            height: auto;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }  
+        header {
+            position: relative;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            height: 65px;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--secondary-background);
+            border-radius: 0;
+            z-index: 1000;
+        }
+        /* BACKGROUND */
+
+        body {
+            background-image: var(--mobile-background);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: scroll;
+            text-align: center;
+        }
+        /* SHOP TITLE */
+
+        .project-title {
+            margin: 0;
+            font-family: "sofia", cursive;
+            font-size: 24px;
+            white-space: nowrap;
+        }
+          header {
+              position: relative;
+              top: 0;
+              left: 0;
+              right: 0;
+              width: 100%;
+              height: auto;
+              padding: 15px 20px;
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              border-radius: 0;
+          }
+
+              /* SHOW BURGER BUTTON */
+
+              .burger-button {
+                  display: block;
+              }
+
+              /* HIDE MENU */
+
+              .menu-box {
+                  display: none;
+                  position: absolute;
+                  top: 100%;
+                  left: 0;
+                  width: 100%;
+                  background-color: #9c9f96;
+                  flex-direction: column;
+                  gap: 0;
+                  padding: 10px 0;
+                  margin: 0;
+                  z-index: 1000;
+              }
+
+              /* SHOW MENU AFTER CLICK */
+              .menu-box.active {
+                  display: flex;
+              }
+
+              /* MENU LINKS */
+
+              .menu-box a {
+                  width: 100%;
+                  padding: 15px 20px;
+                  text-align: center;
+                  font-size: 16px;
+              }
+              .menu-box a:hover {
+                  background-color: #7b80a8;
+                  color: white;
+              }
+
+              .footer_section {
+                    grid-template-columns: 1fr;
+                    gap: 25px;
+            }
+        }
+        
+
+       
+    </style>
+  </head>
+  <body>
+    <header>
+      <div>
+        <h2 class="project-title">Ian's Shop</h2>
+      </div>
+      <!-- BURGER BUTTON -->
+      <button class="burger-button" id="burgerBtn">☰</button>
+
+      <nav class="menu-box" id="menuBox">
+        <a href="shopall.html">ALL SHOES</a>
+        <a href="for_men.html">FOR MEN</a>
+        <a href="for_women.html">FOR WOMEN</a>
+      </nav>
+    </header>
+
+    <main class="main-content">
+        <h2></h2>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="site-footer">
+      <div class="section_container">
+        <div class="footer_section">
+          <div class="footer_logo">
+            <a href="index.html">
+              <h3 class="footer_title">Ian's Shop</h3>
+            </a>
+          </div>
+
+          <div class="useful_links">
+            <h3>Useful Links</h3>
+            <ul>
+              <li><a href="monthlycalc.html">Monthly Interest Calculator</a></li>
+              <li><a href="interest_calc.html">Yearly Interest Calculator</a></li>
+            </ul>
+          </div>
+
+          <div class="contact_us">
+            <h3>Contact</h3>
+            <ul>
+              <li>
+                <i class="bx bx-current-location"></i>
+                <span>Pasil, Matlang, Isabel, Leyte</span>
+              </li>
+              <li>
+                <i class="bx bxs-phone-call"></i> <span>+63 906 394 5817</span>
+              </li>
+              <li>
+                <i class="bx bxs-time-five"></i>
+                <span>Mon-Sat : 8:00 AM - 5:00 PM</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="follow_us">
+            <h3>Follow Us</h3>
+            <a href="https://www.facebook.com/christian.morre1/">
+                <i class="bx bxl-facebook-circle"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+        const burgerBtn = document.getElementById('burgerBtn');
+        const menuBox = document.getElementById('menuBox');
+
+        burgerBtn.addEventListener('click', function() {
+            menuBox.classList.toggle('active');
+        })
+    </script>
+  </body>
+   
+</html>

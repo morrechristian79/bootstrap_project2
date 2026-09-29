@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Imperial+Script&family=Sofia&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Imperial+Script&family=Iosevka+Charon+Mono:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Sofia&display=swap" rel="stylesheet">
+    
+    <title>Installment Payment Calculator</title>
+    <style>
+        :root {
+        /* Colors */
+        --primary-color: #7b80a8;
+        --secondary-color: #f3961c;
+        --dark-color: #252525;
+        --white-color: #fff;
+        --light-gray-color: #f2f2f2;
+        --labor-services-color: #273071;
+        /* --background-image: url("Header_photo.webp"); */
+        --black-color: #050505;
+        --header-color: #878a81;
+        --secondary-background: #9c9f96;
+        --margin-bottom: 16px;
+        --site-max-width: 100%;
+        --spacing:4px;
+        }
+
+        body {
+            font-family: "Iosevka Charon Mono", monospace;
+        }
+    * {
+            box-sizing: border-box;
+            /* font-family: Arial, Helvetica, sans-serif; */
+        }
+        html, body {
+      /* width: 100%; */
+      /* height: 1000px; */
+            min-height: 100vh;
+            padding: 20px;
+        }
+        header {
+          position: absolute;
+          top: calc(var(--spacing) * 5);
+          left: calc(var(--spacing) * 12);
+          right: calc(var(--spacing) * 12);
+          height: calc(var(--spacing) * 12);
+          padding: 0px 40px;
+
+          background: var(--secondary-background);
+          border-radius: 10px;
+          justify-content: center;
+          display: flex;
+          align-items: center;
+
+      }
+
+      .project-title {
+              margin: 0;
+              font-family: "sofia", cursive;
+          }
+          .menu-box {
+              display: flex;
+              gap: 20px;
+              font-family: sans-serif;
+              font-size: large;
+
+              /* padding: 10px 15px; */
+              margin: auto;
+              align-items: center;
+             }
+          .menu-box a {
+              text-decoration: none;
+              color: #252525;
+              font-family: "Iosevka Charon Mono", monospace;
+              font-weight: 500;
+          }
+
+          .menu-box a:hover {
+              /* background-color: blue; */
+              color: white;
+          }
+
+          .burger-button {
+              display: none;
+              background: none;
+              border: none;
+              font-size: 30px;
+              cursor: pointer;
+              color: #252525;
+          }
+          
+
+        /* body {
+            font-family: Arial, Helvetica, sans-serif;
+            padding: 20px;
+            max-width: 400px;
+            margin: 50px auto;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        } */
+        input,select,button {
+            margin: 10px 0;
+            display: block;
+            padding: 8px;
+            width: 100%;
+        }
+         input {
+            margin: 10px 0;
+            display: block;
+            padding: 8px;
+            width: 380px;
+        }
+        #result {
+            margin-top: 20px;
+            background: #f1f1f1;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .calculator {
+            width: 90%;
+            max-width: 400px;
+            margin: 120px auto 0;
+            padding: 20px;
+
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+        /* main {
+            padding-top: 40px;
+        } */
+        label,input, button {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+        }
+
+        @media screen and (max-width: 900px) {
+
+        header {
+            top: calc(var(--spacing) * 4);
+            left: calc(var(--spacing) * 6);
+            right: calc(var(--spacing) * 6);
+            height: auto;
+            min-height: 60px;
+            padding: 10px 25px;
+            justify-content: space-between;
+        }
+
+
+        .menu-box a:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        .project-title {
+            font-size: 24px;
+        }
+
+       
+    }   
+
+    @media screen and (max-width: 600px) {
+
+        header {
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            min-height: 60px;
+            padding: 10px 15px;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .project-title {
+            font-size: 21px;
+        }
+
+        /* Show burger button */
+        .burger-button {
+            display: block;
+            width: auto;
+            margin: 0;
+            padding: 5px;
+        }
+
+        /* Hide menu initially */
+        .menu-box {
+            display: none;
+            width: 100%;
+            margin: 10px 0 0;
+            padding: 15px;
+            flex-direction: column;
+            align-items: stretch;
+            gap: 5px;
+            background-color: var(--secondary-background);
+            border-radius: 0 0 10px 10px;
+        }
+
+        /* JavaScript adds the "active" class */
+        .menu-box.active {
+            display: flex;
+        }
+
+        .menu-box a {
+            width: 100%;
+            padding: 10px;
+            text-align: center;
+            border-radius: 5px;
+        }
+
+        .menu-box a:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+    }
+
+    </style>
+</head>
+<body>
+    <header>
+      <div>
+        <h2 class="project-title">Ian's Shop</h2>
+      </div>
+      <!-- BURGER BUTTON -->
+      <button class="burger-button" id="burgerBtn">☰</button>
+
+      <nav class="menu-box" id="menuBox">
+        <a href="index.html">MAIN</a>
+        <a href="shopall.html">ALL SHOES</a>
+        <a href="for_men.html">FOR MEN</a>
+        <a href="for_women.html">FOR WOMEN</a>
+      </nav>
+    </header>
+    
+    <main class="calculator">
+    <h2>Installment Payment Calculator</h2>
+    
+    
+    <label for="amount">Enter Amount:</label>
+    <input type="number" id="amount" placeholder="e.g. 1000">
+
+    <label for="years">Select Years</label>
+    <select id="years">
+        <option value="1">1 Year</option>
+        <option value="2">2 Years</option>
+        <option value="3">3 Years</option>
+    </select>
+
+    <button id="calculateBtn">Calculate</button>
+
+    <div id="result"></div>
+</main>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const calculateBtn = document.getElementById('calculateBtn');
+            calculateBtn.addEventListener('click', function() {
+                const amount = parseFloat(document.getElementById('amount').value);
+                const years = parseInt(document.getElementById('years').value);
+                const interestRate = 5; //5% year
+
+                if (isNaN(amount) || amount <= 0) {
+                    alert("Please enter a valid amount.");
+                    return;
+                }
+                const totalInterest = amount * interestRate * years;
+                const totalPayment = amount + totalInterest;
+                const yearlyPayment = totalPayment / years;
+                const monthlyPayment = totalPayment / (years * 12);
+
+                document.getElementById('result').innerHTML = `
+                    <strong>Results:</strong><br>
+                    Total Interest: ₱${totalInterest.toFixed(2)}<br>
+                    Total Payment : ₱${totalPayment.toFixed(2)}<br>
+                    Yearly Payment: ₱${yearlyPayment.toFixed(2)}<br>
+                    <span style="color:green;">Monthly Payment: ₱${monthlyPayment.toFixed(2)}</span>`;
+            });
+        });
+
+    
+        const burgerBtn = document.getElementById('burgerBtn');
+        const menuBox = document.getElementById('menuBox');
+
+        burgerBtn.addEventListener('click', function() {
+            menuBox.classList.toggle('active');
+        });
+        
+    </script>
+</body>
+</html>
