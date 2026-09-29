@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tools Inventory</title>
+    <!-- Bootstrap 5.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px;
+            background-color: #f2f4f8;
+            color: #252525;
+            font-family: Arial, sans-serif;
+        }
+
+        .inventory-container {
+            width: 100%;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #273071;
+        }
+
+        .tool-form {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 6px;
+            font-weight: bold;
+        }
+
+        input,
+        select,
+        button {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #aaa;
+            border-radius: 5px;
+            font-size: 15px;
+        }
+
+        .submit-button {
+            grid-column: 1 / -1;
+            background-color: #273071;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .submit-button:hover {
+            background-color: #7b80a8;
+        }
+
+        .search-box {
+            margin-bottom: 20px;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #273071;
+            color: white;
+        }
+
+        .available {
+            color: green;
+            font-weight: bold;
+        }
+
+        .borrowed {
+            color: #d97706;
+            font-weight: bold;
+        }
+
+        .maintenance {
+            color: red;
+            font-weight: bold;
+        }
+
+        .edit-button,
+        .delete-button {
+            width: auto;
+            margin: 3px;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .edit-button {
+            background-color: #2563eb;
+        }
+
+        .delete-button {
+            background-color: #dc2626;
+        }
+
+        .empty-message {
+            padding: 25px;
+            text-align: center;
+            color: #666;
+        }
+        .leaps-logo {
+            height: 40px;
+            width: auto;
+            max-width: 110px;
+            object-fit: contain;
+            display: block;
+        }
+        .inventory-title {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 24px;
+            color: #0b0c12;
+            font-style: italic;
+            font-weight: bold;
+        }
+
+        .inventory-title-logo {
+            width: 240px;
+            height: auto;
+            object-fit: contain;
+        }
+
+        /* Tablet */
+        @media screen and (max-width: 900px) {
+            .tool-form {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Mobile */
+        @media screen and (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+
+            .tool-form {
+                grid-template-columns: 1fr;
+            }
+
+            .submit-button {
+                grid-column: auto;
+            }
+
+            h1 {
+                font-size: 26px;
+            }
+             .leaps-logo {
+                height: 30px;
+                max-width: 100px;
+            }
+                .inventory-title-logo {
+                width: 110px;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+
+   <!-- <div class="container">
+        <header class="d-flex flex-wrap align-items-center justify-content-center py-3 mb-4 border-bottom">
+            <a
+            href="/"
+            class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-decoration-none"
+            aria-label="LEAPS Labor Services home"
+            >
+            <img
+                src="leaps-logo3.png"
+                alt="LEAPS Labor Services"
+                class="leaps-logo"
+            >
+            </a>
+
+            <ul class="nav nav-pills justify-content-center">
+            <li class="nav-item">
+                <a href="#" class="nav-link active" aria-current="page">Home</a>
+            </li>
+            <li class="nav-item"><a href="#" class="nav-link">Features</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">Pricing</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">FAQs</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">About</a></li>
+            </ul>
+        </header>
+        </div> -->
+
+    <main class="inventory-container">
+        <h1 class="inventory-title">
+            <img src="leaps-logo2.png" alt="LEAPS" class="inventory-title-logo">
+            <span>Tools Inventory Management</span>
+        </h1>
+
+        <form id="toolForm" class="tool-form">
+            <div class="form-group">
+                <label for="toolName">Tool name</label>
+                <input
+                    id="toolName"
+                    type="text"
+                    placeholder="Example: Power Drill"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="category">Category</label>
+                <select id="category" required>
+                    <option value="">Select category</option>
+                    <option value="Power Tool">Power Tool</option>
+                    <option value="Hand Tool">Hand Tool</option>
+                    <option value="Safety Equipment">Safety Equipment</option>
+                    <option value="Testing Equipment">Testing Equipment</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="quantity">Quantity</label>
+                <input
+                    id="quantity"
+                    type="number"
+                    min="1"
+                    value="1"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="status">Status</label>
+                <select id="status" required>
+                    <option value="Available">Available</option>
+                    <option value="Borrowed">Borrowed</option>
+                    <option value="Maintenance">Maintenance</option>
+                </select>
+            </div>
+
+            <button class="submit-button" type="submit">
+                Add Tool
+            </button>
+        </form>
+
+        <div class="search-box">
+            <input
+                id="searchInput"
+                type="search"
+                placeholder="Search tools..."
+            >
+        </div>
+
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Tool Name</th>
+                        <th>Category</th>
+                        <th>Quantity</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody id="inventoryTable"></tbody>
+            </table>
+
+            <p id="emptyMessage" class="empty-message">
+                No tools have been added.
+            </p>
+        </div>
+    </main>
+
+    <script >
+        const toolForm = document.getElementById("toolForm");
+        const toolNameInput = document.getElementById("toolName");
+        const categoryInput = document.getElementById("category");
+        const quantityInput = document.getElementById("quantity");
+        const statusInput = document.getElementById("status");
+        const searchInput = document.getElementById("searchInput");
+        const inventoryTable = document.getElementById("inventoryTable");
+        const emptyMessage = document.getElementById("emptyMessage");
+        const submitButton = toolForm.querySelector(".submit-button");
+
+        let tools = JSON.parse(localStorage.getItem("toolsInventory")) || [];
+        let editingId = null;
+
+        function saveTools() {
+            localStorage.setItem("toolsInventory", JSON.stringify(tools));
+        }
+
+        function getStatusClass(status) {
+            return status.toLowerCase();
+        }
+
+        function displayTools(searchText = "") {
+            inventoryTable.innerHTML = "";
+
+            const filteredTools = tools.filter(function (tool) {
+                const searchableText =
+                    `${tool.name} ${tool.category} ${tool.status}`.toLowerCase();
+
+                return searchableText.includes(searchText.toLowerCase());
+            });
+
+            emptyMessage.style.display =
+                filteredTools.length === 0 ? "block" : "none";
+
+            filteredTools.forEach(function (tool) {
+                const row = document.createElement("tr");
+
+                row.innerHTML = `
+                    <td>${tool.id}</td>
+                    <td>${escapeHtml(tool.name)}</td>
+                    <td>${escapeHtml(tool.category)}</td>
+                    <td>${tool.quantity}</td>
+                    <td class="${getStatusClass(tool.status)}">
+                        ${escapeHtml(tool.status)}
+                    </td>
+                    <td>
+                        <button
+                            class="edit-button"
+                            type="button"
+                            onclick="editTool(${tool.id})"
+                        >
+                            Edit
+                        </button>
+
+                        <button
+                            class="delete-button"
+                            type="button"
+                            onclick="deleteTool(${tool.id})"
+                        >
+                            Delete
+                        </button>
+                    </td>
+                `;
+
+                inventoryTable.appendChild(row);
+            });
+        }
+
+        function escapeHtml(text) {
+            const element = document.createElement("div");
+            element.textContent = text;
+            return element.innerHTML;
+        }
+
+        toolForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const toolData = {
+                name: toolNameInput.value.trim(),
+                category: categoryInput.value,
+                quantity: Number(quantityInput.value),
+                status: statusInput.value
+            };
+
+            if (editingId === null) {
+                tools.push({
+                    id: Date.now(),
+                    ...toolData
+                });
+            } else {
+                tools = tools.map(function (tool) {
+                    if (tool.id === editingId) {
+                        return {
+                            id: tool.id,
+                            ...toolData
+                        };
+                    }
+
+                    return tool;
+                });
+
+                editingId = null;
+                submitButton.textContent = "Add Tool";
+            }
+
+            saveTools();
+            displayTools(searchInput.value);
+            toolForm.reset();
+            quantityInput.value = 1;
+        });
+
+        function editTool(id) {
+            const selectedTool = tools.find(function (tool) {
+                return tool.id === id;
+            });
+
+            if (!selectedTool) {
+                return;
+            }
+
+            toolNameInput.value = selectedTool.name;
+            categoryInput.value = selectedTool.category;
+            quantityInput.value = selectedTool.quantity;
+            statusInput.value = selectedTool.status;
+
+            editingId = id;
+            submitButton.textContent = "Update Tool";
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        }
+
+        function deleteTool(id) {
+            const confirmed = confirm(
+                "Are you sure you want to delete this tool?"
+            );
+
+            if (!confirmed) {
+                return;
+            }
+
+            tools = tools.filter(function (tool) {
+                return tool.id !== id;
+            });
+
+            saveTools();
+            displayTools(searchInput.value);
+        }
+
+        searchInput.addEventListener("input", function () {
+            displayTools(searchInput.value);
+        });
+
+        displayTools();
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
